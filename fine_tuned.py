@@ -46,6 +46,10 @@ top_model.load_weights(weight_path)
 #custom model on top of VGG1
 model = Model(inputs=base_model.input, outputs=top_model(base_model.output))
 
+#untrained layers
+for layer in model.layers[:15]:
+  layer.trainable = False
+
 model.compile(optimizer="rmsprop",
               loss="binary_crossentropy",
               metrics=["accuracy", "binary_crossentropy"])
