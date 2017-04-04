@@ -24,3 +24,9 @@ Loss:
 Accuracy:
 >>>
 ![accuracy_image](images/accuracy-epoch.png "accuracy vs epoch for conv-net")
+
+#### Training Speed:
+My model was processing 400 images / second. One training epoch took ~20 second on GPU and it took 130 seconds on CPU. 
+
+#### Conclusion:
+1. The training and validation accuracy is almost same which implies that the model is underfitting. This is not surprising because we are using a small conv-net for fitting the data. 
