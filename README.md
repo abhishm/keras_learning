@@ -19,8 +19,8 @@ I used the keras image-processing library for data augmentation. The keras image
 - **Results**     
 Loss:
 >>> 
-[loss_image](images/loss-epoch.png "loss vs epoch for conv-net")
+![loss_image](images/loss-epoch.png "loss vs epoch for conv-net")
 
 Accuracy:
 >>>
-[accuracy_image](images/accuracy-epoch.png "accuracy vs epoch for conv-net")
+![accuracy_image](images/accuracy-epoch.png "accuracy vs epoch for conv-net")
