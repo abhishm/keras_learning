@@ -2,3 +2,5 @@
 *.h5
 data/*
 preview/*
+*.p
+*.sh
