@@ -47,3 +47,6 @@ Loss:
 Accuracy:
 
 ![accuracy_bottleneck_imate](images/epoch-acc-bottleneck.png "accuracy vs epoch using VGG16 features")
+
+#### Conclusion:
+It is clear from the above figure that using the features from VGG16 we are able to get 90% accuracy that is a huge improvement over 70% accuracy that we got using a small convnet. However, it is also evident that we have overfit the data by going through 50 iterations. Moreover we have overfit the data, but accuracy doesn't change much and remain fixed at 90%.  
