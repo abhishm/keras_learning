@@ -1,3 +1,4 @@
+import pickle
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
@@ -71,6 +72,8 @@ X_validation = np.load("bottleneck_validation_features.npy")
 y_validation = np.array([0] * 400 + [1] * 400)
 
 top_model, history = build_and_train_model()
-top_model.save("bottleneck_features_model.h5")
+
+pickle.dump(history.history, open("tmp_hist_files-bottleneck_feature_model.p", "w"))
+#top_model.save("bottleneck_features_model.h5")
 
 
