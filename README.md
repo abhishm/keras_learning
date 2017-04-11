@@ -65,7 +65,8 @@ Accuracy:
 #### Conclusion:
 1. Using the fine tuned VGG16, we got the 97.5 percent validation accuracy.
 2. The most important part of this exrcise was the optimizer. When I used the default "rmsprop" optimizer from keras, I got completely random results. The defult RMSprop optimizer has learning rate 0.001 and decay 0.9.
-3. The above results I got using SGD with learning rate $1e-4$ and momentum $0.9$.
-4. This was the first eperience where I saw so much change because of the learning rate. 
-5. The training and validation accuracy are almost same and at the very end the training loss is less than the validation loss. One conclusion from that we are not overfitting. 
+3. The above results I got using SGD with learning rate 1e-4 and momentum 0.9.
+4. This was the first experiment where I saw so much change because of the learning rate.
+5. One lesson that we can take from this exercise that when we are doing fine-tuning, we should use a very small learning rate. 
+6. The training and validation accuracy are almost same and at some of the last epochs, we see that the training loss is less than the validation loss. One conclusion from that we are not overfitting. 
 
