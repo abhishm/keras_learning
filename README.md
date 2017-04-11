@@ -60,7 +60,7 @@ Loss:
 
 Accuracy:
 
-![accuracy_finetuned_image](images/epoch-acc-finetuned.png "accuracy vs epoch for fine tuned VGG16")
+![accuracy_finetuned_image](images/epoch-acc-fine_tuned.png "accuracy vs epoch for fine tuned VGG16")
 
 #### Conclusion:
 1. Using the fine tuned VGG16, we got the 97.5 percent validation accuracy.
