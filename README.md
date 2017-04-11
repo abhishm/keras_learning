@@ -49,4 +49,23 @@ Accuracy:
 ![accuracy_bottleneck_imate](images/epoch-acc-bottleneck.png "accuracy vs epoch using VGG16 features")
 
 #### Conclusion:
-It is clear from the above figure that using the features from VGG16 we are able to get 90% accuracy that is a huge improvement over 70% accuracy that we got using a small convnet. However, it is also evident that we have overfit the data by going through 50 iterations. Moreover we have overfit the data, but accuracy doesn't change much and remain fixed at 90%.  
+It is clear from the above figure that using the features from VGG16 we are able to get 90% accuracy that is a huge improvement over 70% accuracy that we got using a small convnet. However, it is also evident that we have overfit the data by going through 50 iterations. Moreover we have overfit the data, but accuracy doesn't change much and remain fixed at 90%. 
+
+### Fine Tuning the model
+In this step, I created a new model in which I put a custom fully connected layer on top of VGG net. I only included the convolution layer of VGG net. On top of that I put the model that I trained previously using the features that I obtained from VGG16. Essentially, the top neural network has only one hidden layer with 64 neurons in it. I trained the model for 50 iterations. The train and validation accuracy and loss can be seen in the following figures.
+
+Loss:
+
+![loss_finetuned_image](images/epoch-loss-fine_tuned.png "loss vs epcoh for fine tuned VGG16")
+
+Accuracy:
+
+![accuracy_finetuned_image](images/epoch-acc-finetuned.png "accuracy vs epoch for fine tuned VGG16")
+
+#### Conclusion:
+1. Using the fine tuned VGG16, we got the 97.5 percent validation accuracy.
+2. The most important part of this exrcise was the optimizer. When I used the default "rmsprop" optimizer from keras, I got completely random results. The defult RMSprop optimizer has learning rate 0.001 and decay 0.9.
+3. The above results I got using SGD with learning rate $1e-4$ and momentum $0.9$.
+4. This was the first eperience where I saw so much change because of the learning rate. 
+5. The training and validation accuracy are almost same and at the very end the training loss is less than the validation loss. One conclusion from that we are not overfitting. 
+
