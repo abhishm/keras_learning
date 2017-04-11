@@ -1,3 +1,4 @@
+import tensorflow as tf
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
@@ -30,54 +31,55 @@ image_width, image_height = 150, 150
 input_shape = (image_width, image_height, 3)
 
 #Model 
-model = Sequential()
-model.add(Conv2D(32, (3, 3), input_shape=input_shape))
-model.add(Activation("relu"))
-model.add(MaxPooling2D(pool_size=(2, 2)))
+with tf.device("/gpu:1"):
+	model = Sequential()
+	model.add(Conv2D(32, (3, 3), input_shape=input_shape))
+	model.add(Activation("relu"))
+	model.add(MaxPooling2D(pool_size=(2, 2)))
 
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation("relu"))
-model.add(MaxPooling2D(pool_size=(2, 2)))
+	model.add(Conv2D(32, (3, 3)))
+	model.add(Activation("relu"))
+	model.add(MaxPooling2D(pool_size=(2, 2)))
 
-model.add(Conv2D(64, (3, 3)))
-model.add(Activation("relu"))
-model.add(MaxPooling2D(pool_size=(2, 2)))
+	model.add(Conv2D(64, (3, 3)))
+	model.add(Activation("relu"))
+	model.add(MaxPooling2D(pool_size=(2, 2)))
 
-model.add(Flatten())
-model.add(Dense(64))
-model.add(Activation("relu"))
-model.add(Dropout(0.5))
+	model.add(Flatten())
+	model.add(Dense(64))
+	model.add(Activation("relu"))
+	model.add(Dropout(0.5))
 
-model.add(Dense(1))
-model.add(Activation("sigmoid"))
+	model.add(Dense(1))
+	model.add(Activation("sigmoid"))
 
-model.compile(loss="binary_crossentropy",
-              optimizer="rmsprop",
-              metrics=["accuracy"])
-
-
-train_generator = train_datagen.flow_from_directory(
-                  train_data_dir,
-                  target_size=(image_width, image_height),
-                  batch_size=batch_size,
-                  class_mode="binary")
-
-validation_generator = test_datagen.flow_from_directory(
-                       validation_data_dir,
-                       target_size=(image_width, image_height),
-                       batch_size=batch_size,
-                       class_mode="binary")
+	model.compile(loss="binary_crossentropy",
+		      optimizer="rmsprop",
+		      metrics=["accuracy"])
 
 
-model.fit_generator(
-            train_generator,
-            steps_per_epoch=train_samples // batch_size,
-            epochs=epochs,
-            validation_data=validation_generator,
-            validation_steps=validation_samples // batch_size)
+	train_generator = train_datagen.flow_from_directory(
+		          train_data_dir,
+		          target_size=(image_width, image_height),
+		          batch_size=batch_size,
+		          class_mode="binary")
+
+	validation_generator = test_datagen.flow_from_directory(
+		               validation_data_dir,
+		               target_size=(image_width, image_height),
+		               batch_size=batch_size,
+		               class_mode="binary")
 
 
-model.save_weights("first_try.h5")
+	model.fit_generator(
+		    train_generator,
+		    steps_per_epoch=train_samples // batch_size,
+		    epochs=epochs,
+		    validation_data=validation_generator,
+		    validation_steps=validation_samples // batch_size)
+
+
+	model.save_weights("first_try.h5")
 
 
 
